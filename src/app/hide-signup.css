@@ -1,0 +1,17 @@
+/* Hide all sign-up related elements in Stack Auth components */
+a[href*="sign-up"],
+a[href*="signup"],
+a[href*="/handler/sign-up"],
+button[data-testid*="sign-up"],
+[data-testid*="sign-up"],
+.stack-signup-link,
+.stack-signup-button {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Hide elements containing sign-up text */
+*[class*="signup"],
+*[class*="sign-up"] {
+  display: none !important;
+}
