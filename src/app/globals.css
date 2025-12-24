@@ -1,14 +1,35 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "./hide-signup.css";
+
+/* TOTO MUSÍ BÝT NAHOŘE - Načtení fontu */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-background-light: var(--background-light);
+  --color-background-dark: var(--background-dark);
+  --color-surface: var(--surface);
+  
+  --color-text-main: var(--text-main);
+  --color-text-secondary: var(--text-secondary);
+  
+  --color-pastel-green: var(--pastel-green);
+  --color-pastel-blue: var(--pastel-blue);
+  --color-pastel-yellow: var(--pastel-yellow);
+  --color-pastel-purple: var(--pastel-purple);
+  --color-pastel-red: var(--pastel-red);
+  
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Shadcn/UI kompatibilita */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -33,27 +54,41 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  
+  /* --- BARVY PRO PSÍ DENÍČEK --- */
+  --primary: #89CFF0; 
+  --primary-foreground: #111813;
+  --primary-hover: #6CBBE0;
+
+  --background: #f6f8fa;
+  --foreground: #111813;
+  
+  --background-light: #f6f8fa;
+  --background-dark: #101822;
+  --surface: #ffffff;
+  
+  --text-main: #111813;
+  --text-secondary: #5A7585;
+  
+  --pastel-green: #e7fdf0;
+  --pastel-blue: #eef6ff;
+  --pastel-yellow: #fffbeb;
+  --pastel-purple: #f7f0ff;
+  --pastel-red: #fff1f1;
+
+  /* Shadcn nastavení */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -80,14 +115,21 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
+  --primary: #89CFF0;
+  --primary-foreground: #101822;
+  --primary-hover: #6CBBE0;
+
+  --background: #101822;
+  --foreground: #ffffff;
+  --surface: #1a2632;
+  --text-main: #ffffff;
+  --text-secondary: #9aaebc;
+
+  /* Shadcn Dark Mode */
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -115,27 +157,10 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
   }
-  button {
-    @apply cursor-pointer;
-  }
-}
-
-/* Custom sidebar styling */
-[data-sidebar="sidebar"][data-mobile="true"] {
-  background: linear-gradient(to bottom, #6915d3, #8b2de8) !important;
-}
-
-[data-mobile="true"] {
-  background: linear-gradient(to bottom, #6915d3, #8b2de8) !important;
-  color: white !important;
-}
-
-/* Sheet content for mobile sidebar */
-.bg-sidebar {
-  background: linear-gradient(to bottom, #6915d3, #8b2de8) !important;
 }
